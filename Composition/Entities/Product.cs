@@ -1,4 +1,6 @@
-﻿namespace Composition.Entities
+﻿using System.Text;
+
+namespace Composition.Entities
 {
     internal class Product
     {

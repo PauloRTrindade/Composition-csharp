@@ -1,4 +1,6 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 namespace Composition.Entities
 {
@@ -6,7 +8,7 @@ namespace Composition.Entities
     {
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public Product product { get; set; }
+        public Product Product { get; set; }
 
         public OrderItem() { }
 
@@ -14,12 +16,23 @@ namespace Composition.Entities
         {
             Quantity = quantity;
             this.Price = price;
-            this.product = product;
+            this.Product = product;
         }
 
         public double SubTotal()
         {
             return Quantity * Price;
+        }
+
+        public override string ToString()
+        {
+            return Product.Name
+                + ", $ "
+                + Product.Price.ToString("F2", CultureInfo.InvariantCulture)
+                + ", Quantity: "
+                + Quantity
+                + ", Subtotal: $ "
+                + SubTotal().ToString("F2", CultureInfo.InvariantCulture);
         }
     }
 }
