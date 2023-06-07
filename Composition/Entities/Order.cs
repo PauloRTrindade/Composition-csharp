@@ -14,11 +14,12 @@ namespace Composition.Entities
 
         public List<OrderItem> Items { get; private set; } = new List<OrderItem>();
 
-        public Order(DateTime moment, OrderStatus status, Client client)
+        public Order(DateTime moment, OrderStatus status, Client client, List<OrderItem> items)
         {
             Moment = moment;
             Status = status;
             Client = client;
+            Items = items;
         }
 
         public void AddItem(OrderItem item)
@@ -47,7 +48,7 @@ namespace Composition.Entities
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Order moment: {Moment.ToString("dd/MM/yyyy HH:mm:ss")}");
             sb.AppendLine($"Order status: {Status.ToString()}");
-            sb.AppendLine($"Client {Client.Name} ({Client.BirthDate}) - {Client.Email}");
+            sb.AppendLine($"Client: {Client.Name} ({Client.BirthDate.ToString("dd/MM/yyyy")}) - {Client.Email}");
             sb.AppendLine("Order items:");
             foreach (OrderItem item in Items)
             {
